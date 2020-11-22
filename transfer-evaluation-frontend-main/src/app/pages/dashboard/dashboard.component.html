@@ -1,0 +1,152 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<div class="container-fluid mt--7">
+  <div class="row mt-5">
+    <div class="col-xl-12 mb-5 mb-xl-0">
+
+      <div class="card a shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <form class="example-form" [formGroup]="searchForm" (ngSubmit)="search_tables()">
+              <div class="row">
+                <div class="col-sm-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Major</mat-label>
+                    <input type="text" (blur)="inputControl($event, majorOptions, majorField)" matInput [formControl]="majorField" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option *ngFor="let option of filteredMajor | async" [value]="option">
+                        {{option }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>School</mat-label>
+                    <input type="text" (blur)="inputControl($event, schoolOptions,schoolField)" matInput [formControl]="schoolField" [matAutocomplete]="autoSchool">
+                    <mat-autocomplete #autoSchool="matAutocomplete">
+                      <mat-option *ngFor="let o of filteredSchool | async" [value]="o">
+                        {{o }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>State</mat-label>
+                    <input type="text" (blur)="inputControl($event, stateOptions, stateField)" matInput [formControl]="stateField" [matAutocomplete]="autoState">
+                    <mat-autocomplete  #autoState="matAutocomplete">
+                      <mat-option *ngFor="let option of filteredState | async" [value]="option">
+                        {{option }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                  <button class="btn btn-primary" type="submit">GO</button>
+                </div>
+              </div>
+            </form>
+            <div class="col">
+              <h3 class="mb-0"></h3>
+            </div>
+            <div class="col text-right">
+              <!-- <a href="#!" class="btn btn-sm btn-primary">See all</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> No. </th>
+              <td mat-cell *matCellDef="let element"> {{element.transfer_eval_id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="approved_status">
+              <th mat-header-cell *matHeaderCellDef> Approved Status </th>
+              <td mat-cell *matCellDef="let element"> {{element.approved_status}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="transfer_course_id">
+              <th mat-header-cell *matHeaderCellDef> Transfer course Id </th>
+              <td mat-cell *matCellDef="let element"> {{element.transfer_course_id.transfer_course_id}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="subject_number">
+              <th mat-header-cell *matHeaderCellDef> Subject Number </th>
+              <td mat-cell *matCellDef="let element"> {{element.transfer_course_id.subject_number}} </td>
+            </ng-container>
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef> Transfer Course Title </th>
+              <td mat-cell *matCellDef="let element"> {{element.transfer_course_id.title}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="school_id">
+              <th mat-header-cell *matHeaderCellDef> School Id </th>
+              <td mat-cell *matCellDef="let element"> {{element.transfer_course_id.school_id.school_id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="school_name">
+              <th mat-header-cell *matHeaderCellDef> School Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.transfer_course_id.school_id.school_name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="school_state">
+              <th mat-header-cell *matHeaderCellDef> School State </th>
+              <td mat-cell *matCellDef="let element"> {{element.transfer_course_id.school_id.state_name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="major_req_id">
+              <th mat-header-cell *matHeaderCellDef>Major Required Id </th>
+              <td mat-cell *matCellDef="let element"> {{element.major_req_id.major_req_id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="major_description">
+              <th mat-header-cell *matHeaderCellDef>Major Description</th>
+              <td mat-cell *matCellDef="let element"> {{element.major_req_id.description}} </td>
+            </ng-container>
+            <ng-container matColumnDef="major_id">
+              <th mat-header-cell *matHeaderCellDef>Major Id</th>
+              <td mat-cell *matCellDef="let element"> {{element.major_req_id.major_id.major_id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="major_name">
+              <th mat-header-cell *matHeaderCellDef>Major Name</th>
+              <td mat-cell *matCellDef="let element"> {{element.major_req_id.major_id.major_name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="approver_id">
+              <th mat-header-cell *matHeaderCellDef>Major Name</th>
+              <td mat-cell *matCellDef="let element"> {{element.approver_id.approver_id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="approver_name">
+              <th mat-header-cell *matHeaderCellDef>Major Name</th>
+              <td mat-cell *matCellDef="let element"> {{element.approver_id.approver_name}} </td>
+            </ng-container>
+
+
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+            <mat-paginator [pageSize]="10" showFirstLastButtons></mat-paginator>
+
+
+          <!-- Projects table -->
+          <!-- <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Page name</th>
+                <th scope="col">Visitors</th>
+                <th scope="col">Unique users</th>
+                <th scope="col">Bounce rate</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

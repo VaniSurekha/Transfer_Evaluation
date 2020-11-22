@@ -1,0 +1,106 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+  style="min-height: 100px; background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+
+    <div class="col-xl-10 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-4 text-right">
+              Check All the details!
+            </div>
+          </div>
+        </div>
+        <div class="card-body font-weight-bold">
+          <div class="row">
+            <div class="col-3">
+              Major Name
+            </div>
+            <div class="col-6">
+              {{transferEvaluationData.majorField}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              School Name
+            </div>
+            <div class="col-6">
+              {{transferEvaluationData.schoolField}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              Sem Year Taken
+            </div>
+            <div class="col-6">
+              {{transferEvaluationData.sem_year_taken}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              Transfer Course Subject
+            </div>
+            <div class="col-6">
+              {{transferEvaluationData.transferCourseSubject}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              Transfer Course Title
+            </div>
+            <div class="col-6">
+              {{transferEvaluationData.transferCourseTitle}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              UNHM Equivalent
+            </div>
+            <div class="col-6">
+              {{transferEvaluationData.unhm_equivalent}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              Approved Status
+            </div>
+            <div class="col-6">
+              {{transferEvaluationData.approved_status}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              Approver Name
+            </div>
+            <div class="col-6">
+              {{transferEvaluationData.approver_name}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              Expiration Date
+            </div>
+            <div class="col-6">
+              {{transferEvaluationData.expiration_date}}
+            </div>
+          </div>
+        </div>
+        <hr class="my-4" />
+        <!-- Description -->
+        <div class="row">
+          <div class="col-12 text-center">
+            <button type="button" (click)="onUpdate()" class="btn btn-warning text-center">Update</button>
+            <button type="button" (click)="onAdd()" class="btn btn-success text-center">Add</button>
+            <button type="button" class="btn btn-success text-center">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,190 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+  style="min-height: 100px; background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+
+    <div class="col-xl-10 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-4 text-right">
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]= "addTransferEvaluation" (ngSubmit)="onSubmit()">
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Sem Year Taken</label>
+                    <input formControlName="sem_year_taken" type="text" id="input-username" class="form-control form-control-alternative"
+                      placeholder="Sem Year Taken">
+                    <div class="some-slass">
+                      <p class="small text-danger"
+                        *ngIf="addTransferEvaluation.get('sem_year_taken').hasError('required') && addTransferEvaluation.get('sem_year_taken').touched">
+                        * Sem year Taken is Required
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Expiration Date</label>
+                    <input type="date" formControlName="expiration_date" id="input-email" class="form-control form-control-alternative"
+                      placeholder="">
+                  </div>
+                  <div class="some-slass">
+                    <p class="small text-danger"
+                      *ngIf="addTransferEvaluation.get('expiration_date').hasError('required') && addTransferEvaluation.get('expiration_date').touched">
+                      * Expiration Date is Required
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label> Major</mat-label>
+                    <input type="text" matInput [formControl]="majorField" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option *ngFor="let option of filteredMajor | async" [value]="option">
+                        {{option }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                  <div class="some-slass">
+                    <p class="small text-danger"
+                      *ngIf="addTransferEvaluation.get('majorField').hasError('required') && addTransferEvaluation.get('majorField').touched">
+                      * Major is Required
+                    </p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>School</mat-label>
+                    <input type="text"  matInput [formControl]="schoolField"
+                      [matAutocomplete]="autoSchool">
+                    <mat-autocomplete #autoSchool="matAutocomplete">
+                      <mat-option *ngFor="let o of filteredSchool | async" [value]="o">
+                        {{o }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                  <div class="some-slass">
+                    <p class="small text-danger"
+                      *ngIf="addTransferEvaluation.get('schoolField').hasError('required') && addTransferEvaluation.get('schoolField').touched">
+                      * School is Required
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Transfer Course Title</mat-label>
+                    <input type="text" matInput [formControl]="transferCourseTitle"
+                      [matAutocomplete]="autoCourseTitle">
+                    <mat-autocomplete #autoCourseTitle="matAutocomplete">
+                      <mat-option *ngFor="let o of filteredTransferCourseTitle | async" [value]="o">
+                        {{o }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                  <div class="some-slass">
+                    <p class="small text-danger"
+                      *ngIf="addTransferEvaluation.get('transferCourseTitle').hasError('required') && addTransferEvaluation.get('transferCourseTitle').dirty">
+                      * Transfer Course Title is Required
+                    </p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Transfer Course Subject</mat-label>
+                    <input type="text" matInput
+                      [formControl]="transferCourseSubject" [matAutocomplete]="autoCourseSubject">
+                    <mat-autocomplete #autoCourseSubject="matAutocomplete">
+                      <mat-option *ngFor="let o of filteredTransferCourseSubject | async" [value]="o">
+                        {{o }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                  <div class="some-slass">
+                    <p class="small text-danger"
+                      *ngIf="addTransferEvaluation.get('transferCourseSubject').hasError('required') && addTransferEvaluation.get('transferCourseSubject').dirty">
+                      * Transfer Course Subject is Required
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Approver Name</mat-label>
+                    <input type="text" matInput
+                      [formControl]="approversName" [matAutocomplete]="autoApproveName">
+                    <mat-autocomplete #autoApproveName="matAutocomplete">
+                      <mat-option *ngFor="let o of filteredApproversName | async" [value]="o">
+                        {{o }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                  <div class="some-slass">
+                    <p class="small text-danger"
+                      *ngIf="addTransferEvaluation.get('approver_name').hasError('required') && addTransferEvaluation.get('approver_name').touched">
+                      * Approver Name is Required
+                    </p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-approved-status">Approved Status</label>
+                    <select id="input-approved-status" class="form-control" formControlName="approved_status">
+                      <option value="Yes" selected>Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
+                  <div class="some-slass">
+                    <p class="small text-danger"
+                      *ngIf="addTransferEvaluation.get('approved_status').hasError('required') && addTransferEvaluation.get('approved_status').touched">
+                      * Approved Status is Required
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="unhm_equivalent">UNHM Equivalent</label>
+                    <input formControlName="unhm_equivalent" type="text" id="unhm_equivalent" class="form-control form-control-alternative"
+                      placeholder="UNHM Equivalent">
+                  </div>
+                  <div class="some-slass">
+                    <p class="small text-danger"
+                      *ngIf="addTransferEvaluation.get('unhm_equivalent').hasError('required') && addTransferEvaluation.get('unhm_equivalent').touched">
+                      * UNHM Equivalent is Required
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4" />
+            <!-- Description -->
+            <div class="row">
+              <div class="col-12 text-center">
+                <button type="submit" class="btn btn-success text-center">Next</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
