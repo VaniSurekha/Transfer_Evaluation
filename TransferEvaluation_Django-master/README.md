@@ -1,27 +1,29 @@
-# Transfer Evaluation
+# Transfer_Evaluation_ Django Backend Environment Set up
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.10.
+Install Python latest version into your system.
 
-## Development server
+Create a virtual environment in the your project root directory by following below steps:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+  > pip install virtualenv
+  > virtualenv <name_of_env>
+ - Now redirect to the path > <name_of_env>\scripts and execute activate.
+	> venv\scripts\activate
+ 
+Now, your terminal will directed to virtual environment.
 
-## Code scaffolding
+Install required packages for the project using pip install command.
+ > pip install <package_name>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+and Freeze all the required packages into requirements.txt file using below command:
+ > pip freeze >requirements.txt
+ 
+ It will create requirements.txt file in root directory which contains a list of packages along with versions installed.
+ 
+ Run the migrations of db using below command:
+  > python manage.py makemigrations
+  > python manage.py migrate
+ 
+ Now run the python server:
+  > python manage.py runserver
+ 
+ Everything is setup to run Django web environment.
